@@ -12,7 +12,7 @@ import (
 type item struct {
 	name string
 	date time.Time
-	tags string
+	tags []string
 	link string
 }
 
@@ -54,14 +54,14 @@ func addUrl(list *[]item) {
 		return
 	}
 
-	*list = append(*list, item{link: args[0], name: args[1], tags: strings.Join(args[2:], ", "), date: time.Now()})
+	*list = append(*list, item{link: args[0], name: args[1], tags: args[2:], date: time.Now()})
 
 }
 
 func showUrl(list []item) {
 	fmt.Printf("Всего записей %d\n", len(list))
 	for i, url := range list {
-		fmt.Printf("%d.\nИмя: %s\nURL: %s\nТеги: %s\nДата: %s\n", i+1, url.name, url.link, url.tags, url.date.Format(time.DateTime))
+		fmt.Printf("%d.\nИмя: %s\nURL: %s\nТеги: %s\nДата: %s\n", i+1, url.name, url.link, strings.Join(url.tags, ", "), url.date.Format(time.DateTime))
 	}
 }
 
