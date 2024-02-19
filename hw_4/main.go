@@ -51,7 +51,7 @@ func (d *dbImpl) Get(k string) (string, bool) {
 func main() {
 	c := newCacheImpl()
 	c.Set("hello", "world")
-	c.Set("test", struct{ field string }{"my map"})
+	c.Set("test", 164656)
 	db := newDbImpl(c)
 	fmt.Println(db.Get("test"))
 	fmt.Println(db.Get("hello"))
